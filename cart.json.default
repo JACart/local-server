@@ -1,0 +1,7 @@
+{
+    "cartState.userId": "test",
+    "cartState.latitude": 38.433095,
+    "cartState.longitude": -78.861054,
+    "cartState.active": true,
+    "cartState.state": "summon-start"
+}
