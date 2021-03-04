@@ -98,7 +98,7 @@ module.exports.init = () => {
     socket.emit(cartState.state)
   })
 
-  cartState = JSON.parse(fs.readFileSync('../cart.json', 'utf-8'))
+  cartState = JSON.parse(fs.readFileSync('cart.json', 'utf-8'))
 
   if (
     cartState.state === 'summon-start' ||
