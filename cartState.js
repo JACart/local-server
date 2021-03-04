@@ -6,8 +6,9 @@ let cartState
 global.CARTSTATE = () => cartState
 
 const io = require('socket.io-client')
-const socket = io('http://35.238.125.238:8020/cart')
+// const socket = io('http://35.238.125.238:8020/cart')
 // const socket = io('http://localhost:8020/cart')
+const socket = io('http://cart.av.cise.jmu.edu/cart')
 
 module.exports.init = () => {
   eventManager.on('gps', (data) => {
