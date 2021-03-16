@@ -87,6 +87,20 @@ function subscribeToTopics() {
   }).subscribe((x) => {
     eventManager.emit('arrived')
   })
+
+  new ROSLIB.topic({
+    ros: ros,
+    name: '/stop',
+    messageType: 'navigation_msgs/Stop',
+  }).subscribe((x) => {
+    if (x.status) {
+      eventManager.emit('stop')
+    } else {
+      eventManager.emit('resume')
+    }
+    console.log('stop topic: ' + x.status)
+  })
+
 ​
   new ROSLIB.Topic({
     ros: ros,

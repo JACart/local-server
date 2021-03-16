@@ -50,6 +50,7 @@ module.exports.init = () => {
     cartState.state = 'idle'
     cartState.destination = ''
     cartState.userId = ''
+    cartState.pullover = false
     writeState()
   })
 
@@ -58,6 +59,7 @@ module.exports.init = () => {
     cartState.latitude = data.latitude
     cartState.longitude = data.longitude
     cartState.state = 'summon-start'
+    cartState.pullover = false
     writeState()
     eventManager.emit('drive-to', data)
     eventManager.emit('summon', data)
@@ -97,6 +99,18 @@ module.exports.init = () => {
     writeState()
     eventManager.emit('ui-init', cartState)
     socket.emit(cartState.state)
+  })
+
+  eventManager.on('stop', () => {
+    cartState.pullover = true
+    writeState()
+    eventManager.emit('ui-init', cartState)
+  })
+
+  eventManager.on('resume', () => {
+    cartState.pullover = false
+    writeState()
+    eventManager.emit('ui-init', cartState)
   })
 
   cartState = JSON.parse(fs.readFileSync('cart.json', 'utf-8'))
