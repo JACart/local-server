@@ -166,5 +166,5 @@ module.exports.rosDisconnect = () => {
 }
 
 function writeState() {
-  fs.writeFileSync('../cart.json', JSON.stringify(cartState))
+  fs.writeFileSync('cart.json', JSON.stringify(cartState))
 }
