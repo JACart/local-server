@@ -28,7 +28,8 @@ eventManager.on('pose', (x) => {
     (!x.passenger || !x.safe) &&
     !isPulledOver
   ) {
-    pulloverHelper(true)
+    // DISBALED PULL OVER MESSAGE
+    //  pulloverHelper(true)
   }
 
   if (
