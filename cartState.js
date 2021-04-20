@@ -4,11 +4,13 @@ const destinations = require('./destinations')
 
 let cartState
 global.CARTSTATE = () => cartState
-const pose = { passenger: false, safe: false }
+
+let pose = { passenger: false, safe: false }
+// let pose = {}
 
 const io = require('socket.io-client')
-const { set } = require('mongoose')
-const socket = io('http://35.238.125.238:8020/cart')
+// const socket = io('http://35.238.125.238:8020/cart')
+const socket = io('https://cart.av.cise.jmu.edu/cart')
 // const socket = io('http://localhost:8020/cart')
 
 module.exports.init = () => {
@@ -23,7 +25,7 @@ module.exports.init = () => {
   })
 
   eventManager.on('pose', (x) => {
-    console.log('got pose')
+    console.log(x)
     pose = x
   })
 
@@ -109,6 +111,7 @@ module.exports.init = () => {
   })
 
   eventManager.on('pullover', (x) => {
+    console.log('PULL OVER')
     cartState.pullover = x
     writeState()
   })
@@ -181,5 +184,5 @@ module.exports.rosDisconnect = () => {
 }
 
 function writeState() {
-  fs.writeFileSync('../cart.json', JSON.stringify(cartState))
+  fs.writeFileSync('cart.json', JSON.stringify(cartState))
 }

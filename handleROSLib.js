@@ -67,12 +67,12 @@ ros.on('close', function () {
 function pulloverHelper(status) {
   const topic = new ROSLIB.Topic({
     ros: ros,
-    name: '/request_stop',
-    messageType: 'navigation_msgs/EmergencyStop',
+    name: '/stop',
+    messageType: 'navigation_msgs/Stop',
   })
   const msg = new ROSLIB.Message({
     sender_id: { data: 'server' },
-    emergency_stop: status,
+    stop: status,
   })
   console.log(msg)
   isPulledOver = status
@@ -93,8 +93,8 @@ function subscribeToTopics() {
     name: '/cart_empty_safe',
     messageType: 'std_msgs/String',
   }).subscribe((x) => {
-    console.log(x)
-    eventManager.emit('pose', JSON.parse(x))
+    console.log(x.data)
+    eventManager.emit('pose', JSON.parse(x.data))
   })
 
   new ROSLIB.Topic({

@@ -17,9 +17,10 @@ global.eventManager = new events()
   cartState.init()
   handleUI(io)
   handlePose(io)
-  // require('./handleROSLib')()
-  handleROS(io) // socket io
-  server.listen(8021, () => {
-    console.log('local-socket-server started at 8021')
+
+  require('./handleROSLib')()
+  // handleROS(io) // socket io
+  server.listen(process.env.PORT, () => {
+    console.log('local-socket-server started at ' + process.env.PORT)
   })
 })()
