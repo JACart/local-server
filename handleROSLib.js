@@ -23,6 +23,12 @@ eventManager.on('change-destination', () => {
 })
 
 eventManager.on('pose', (x) => {
+  if (CARTSTATE().state === 'idle' && (x.passenger && x.safe)) {
+    CARTSTATE().state = 'summon-finish'
+    console.log('PASSENGER ARRIVING')
+    eventManager.emit('ui-init', CARTSTATE())
+  }
+
   if (
     CARTSTATE().state === 'transit-start' &&
     (!x.passenger || !x.safe) &&
@@ -72,6 +78,7 @@ function pulloverHelper(status) {
   })
   const msg = new ROSLIB.Message({
     sender_id: { data: 'server' },
+    distance: -1,
     stop: status,
   })
   console.log(msg)
