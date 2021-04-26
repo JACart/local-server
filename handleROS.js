@@ -18,4 +18,7 @@ module.exports = (io) => {
       cartState.rosDisconnect()
     })
   })
+  io.of('/ros').on('error', async (socket) => {
+    socket.rosConnect();
+  })
 }
