@@ -19,6 +19,7 @@ module.exports = (io) => {
     })
   })
   io.of('/ros').on('error', async (socket) => {
+    console.log('error connecting -- reconnecting')
     socket.rosConnect();
   })
 }
