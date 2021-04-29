@@ -17,6 +17,7 @@ module.exports.init = () => {
   eventManager.on('pose', (x) => (pose = x))
 
   eventManager.on('gps', (data) => {
+    console.log(data);
     socket.emit('gps', data)
   })
 
@@ -25,7 +26,6 @@ module.exports.init = () => {
   })
 
   eventManager.on('pose', (x) => {
-    console.log(x)
     pose = x
   })
 
@@ -108,6 +108,7 @@ module.exports.init = () => {
         }, 2000)
       }
     }
+    driveToDestination()
   })
 
   eventManager.on('pullover', (x) => {
