@@ -15,6 +15,7 @@ module.exports = {
     'audio',
     'reset-client', //change
     'passenger-exit',
+    'speech',
     // 'passenger-video',
   ],
   uiIncomingEvents: [
@@ -23,6 +24,7 @@ module.exports = {
     'transit-await',
     'pullover',
     'resume-driving',
+    'tts',
   ],
   rosIncomingEvents: [
     'gps',

@@ -46,6 +46,10 @@ eventManager.on('pullover', (status) => {
   pulloverHelper(status)
 })
 
+eventManager.on('tts', (speech) => {
+  tts(speech)
+})
+
 ros.on('connection', function () {
   console.log('Connected to websocket server.')
   subscribeToTopics()
@@ -99,6 +103,15 @@ function subscribeToTopics() {
 
   new ROSLIB.Topic({
     ros: ros,
+    name: '/speech_text',
+    messageType: 'std_msgs/String',
+  }).subscribe((x) => {
+    console.log(x.data)
+    eventManager.emit('speech', JSON.parse(x.data))
+  })
+
+  new ROSLIB.Topic({
+    ros: ros,
     name: '/gps_send',
     messageType: 'navigation_msgs/LatLongPoint',
   }).subscribe((x) => {
@@ -139,6 +152,20 @@ function subscribeToTopics() {
   }).subscribe((x) => {
     eventManager.emit('eta', x.data)
   })
+}
+
+function tts(str) {
+  const topic = new ROSLIB.Topic({
+    ros: ros,
+    name: '/text_speech',
+    messageType: 'std_msgs/String',
+  })
+  const msg = new ROSLIB.Message({
+    data: str,
+  })
+
+  console.log('Publishing  TTS request')
+  topic.publish(msg)
 }
 
 function SendDriveRequest(latitude, longitude) {
