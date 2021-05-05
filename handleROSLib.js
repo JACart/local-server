@@ -114,7 +114,7 @@ function subscribeToTopics() {
     messageType: 'std_msgs/String',
   }).subscribe((x) => {
     console.log(x.data)
-    eventManager.emit('speech', JSON.parse(x.data))
+    eventManager.emit('speech', x.data)
   })
 
   new ROSLIB.Topic({
