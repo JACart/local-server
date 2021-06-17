@@ -4,7 +4,6 @@ const io = require('socket.io')(server)
 const cartState = require('./cartState')
 const handleUI = require('./handleUI')
 const handleROS = require('./handleROS')
-const handlePose = require('./handlePose')
 
 const events = require('events').EventEmitter
 
@@ -14,13 +13,14 @@ app.get('/state', (req, res) => {
 
 global.eventManager = new events()
 ;(async function init() {
-  cartState.init()
+  const args = process.argv.slice(2)
+  cartState.init(args.includes('online'), args.includes('pose'))
   handleUI(io)
-  handlePose(io)
 
   require('./handleROSLib')()
   // handleROS(io) // socket io
-  server.listen(process.env.PORT, () => {
-    console.log('local-socket-server started at ' + process.env.PORT)
+  server.listen(8022, () => {
+    console.log('local-socket-server started at ' + 8022)
+    cartState.rosConnect()
   })
 })()
