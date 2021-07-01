@@ -34,6 +34,7 @@ module.exports.init = (online = false, pose = true) => {
   }
   if (online) {
     socket = io('http://157.245.126.151:10000/cart')
+
   } else {
     socket = null
     cartState.state = 'summon-finish'
@@ -115,8 +116,9 @@ module.exports.init = (online = false, pose = true) => {
     })
 
   eventManager.on('destination', (name) => {
+    console.log(name);
     function driveToDestination() {
-      if (pose.passenger && pose.safe) {
+      if (!POSE || (pose.passenger && pose.safe)) {
         if (destinations[name]) {
           cartState.destination = name
 
@@ -160,9 +162,9 @@ module.exports.init = (online = false, pose = true) => {
           console.log(pose)
           if (!pose.passsenger) {
             clearInterval(interval)
-            cartState.state = 'idle'
+            cartState.state = onlineMode? 'idle':'summon-finish'
             cartState.pullover = false
-            cartState.userId = ''
+            cartState.userId = onlineMode? '29r2h3h2' : ''
             cartState.destination = ''
             writeState()
             eventManager.emit('ui-init', cartState)
@@ -196,6 +198,7 @@ module.exports.rosConnect = () => {
   setTimeout(() => {
     onlineMode && socket.emit('cart-active', true)
     writeState()
+    console.log('ROS CONNECTED, UPDATING UI');
     eventManager.emit('ui-init', cartState)
   }, 1000)
 }
