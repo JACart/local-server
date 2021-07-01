@@ -27,4 +27,8 @@ module.exports = {
     latitude: 38.433019,
     longitude: -78.859893,
   },
+  gym: {
+    latitude: 38.43349772,
+    longitude: -78.86253667,
+  },
 }
