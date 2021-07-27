@@ -9,13 +9,10 @@ module.exports = (io) => {
             speechSocket.emit('tts', 'Driving to Gym')
         }, 1000);
 
-        speechSocket.on('spoke', (data) => {
+        socket.on('spoke', (data) => {
             console.log(data);
         })
 
-        speechSocket.on('test', testStr => {
-            console.log("test success")
-        })
 
     })
 }
