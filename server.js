@@ -18,11 +18,9 @@ global.eventManager = new events()
   cartState.init(args.includes('online'), args.includes('pose'))
   handleUI(io)
   handleTTS(io)
-
-  // require('./handleROSLib')()
-  // handleROS(io) // socket io
+  require('./handleROSLib')()
   server.listen(8021, () => {
     console.log('local-socket-server started at ' + 8021)
-    cartState.rosConnect()
+    // cartState.rosConnect()
   })
 })()

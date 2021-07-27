@@ -9,7 +9,7 @@ module.exports = {
     'summon-cancel',
     'summon-finish',
     'path',
-    // 'gps',
+   'gps',
     // 'transit-start', // change
     // 'transit-end',
     'audio',

@@ -2,6 +2,7 @@ const ROSLIB = require('roslib')
 const cartState = require('./cartState')
 const distance = require('gps-distance')
 
+let connected = false
 const lastGPS = { latitude: 0, longitude: 0 }
 
 let isPulledOver = false
@@ -9,6 +10,13 @@ let isPulledOver = false
 let ros = new ROSLIB.Ros({
   url: 'ws://127.0.0.1:9090',
 })
+
+let interval = setInterval(() => {
+  if(!connected){
+  console.log('trying to reconnect');
+  ros.connect('ws://127.0.0.1:9090')
+  }
+}, 4000);
 
 module.exports = () => {
   eventManager.on('drive-to', (data) => {
@@ -56,22 +64,28 @@ eventManager.on('tts', (speech) => {
   tts(speech)
 })
 
+
 ros.on('connection', function () {
+  connected = true
+  clearInterval(interval)
   console.log('Connected to websocket server.')
   subscribeToTopics()
   cartState.rosConnect()
 })
 
 ros.on('error', function (error) {
-  console.error(
-    'Error connecting to websocket server, Check that ros bridge is running on port 9090'
-  )
   cartState.rosDisconnect()
 })
 
+
 ros.on('close', function () {
-  console.log('Connection to websocket server closed.')
-  cartState.rosDisconnect()
+  // setInterval(() => {
+    
+  // }, interval);
+  // if(reconnecting){
+  //   cartState.rosDisconnect()
+  // }
+  
 })
 
 function pulloverHelper(status) {
@@ -185,7 +199,6 @@ function SendDriveRequest(latitude, longitude) {
     longitude: longitude,
     elevation: 0,
   })
-
-  console.log('Publishing drive to request')
+ 
   topic.publish(msg)
 }

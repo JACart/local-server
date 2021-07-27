@@ -19,14 +19,10 @@ module.exports = {
     latitude: 38.432637,
     longitude: -78.861113,
   },
-  diner: {
-    latitude: 38.431662,
-    longitude: -78.860880,
-  },
-  festival: {
-    latitude: 38.433019,
-    longitude: -78.859893,
-  },
+  // festival: {
+  //   latitude: 38.433019,
+  //   longitude: -78.859893,
+  // },
   gym: {
     latitude: 38.43349772,
     longitude: -78.86253667,
