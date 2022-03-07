@@ -16,6 +16,7 @@ module.exports = {
     'reset-client', //change
     'passenger-exit',
     'speech',
+    'listening',
     // 'passenger-video',
   ],
   uiIncomingEvents: [

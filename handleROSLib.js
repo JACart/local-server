@@ -49,6 +49,7 @@ eventManager.on('pose', (x) => {
 })
 
 eventManager.on('pullover', (status) => {
+  console.log("I got pullover")
   pulloverHelper(status)
 })
 

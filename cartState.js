@@ -16,8 +16,7 @@ let onlineMode = false
 global.POSE = true
 module.exports.init = (online = false, pose = true) => {
   console.log(
-    `Server started in ${online ? 'ONLINE' : 'OFFLINE'} with pose tracking ${
-      pose ? 'ENABLED' : 'DISABLED'
+    `Server started in ${online ? 'ONLINE' : 'OFFLINE'} with pose tracking ${pose ? 'ENABLED' : 'DISABLED'
     }`
   )
   POSE = pose
@@ -43,7 +42,7 @@ module.exports.init = (online = false, pose = true) => {
   eventManager.on('pose', (x) => (pose = x))
 
   eventManager.on('gps', (data) => {
-    console.log(data)
+    // console.log(data)
     onlineMode && socket.emit('gps', data)
   })
 
@@ -84,7 +83,7 @@ module.exports.init = (online = false, pose = true) => {
       eventManager.emit('summon-cancel')
       cartState.state = 'idle'
       cartState.userId = ''
-      ;(cartState.destination = ''), writeState()
+        ; (cartState.destination = ''), writeState()
       eventManager.emit('ui-init', cartState)
     })
 
@@ -157,7 +156,7 @@ module.exports.init = (online = false, pose = true) => {
         console.log('checking if passenger still in cart . . .')
         let interval = null
         interval = setInterval(() => {
-          console.log(pose)
+          // console.log(pose)
           if (!pose.passsenger) {
             clearInterval(interval)
             cartState.state = 'idle'
@@ -192,10 +191,12 @@ module.exports.init = (online = false, pose = true) => {
 }
 
 module.exports.rosConnect = () => {
+  console.log('ros connected');
   cartState.active = true
   setTimeout(() => {
     onlineMode && socket.emit('cart-active', true)
     writeState()
+    // console.log(cartState);
     eventManager.emit('ui-init', cartState)
   }, 1000)
 }
