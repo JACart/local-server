@@ -18,11 +18,12 @@ module.exports = (io) => {
     io.of('/speech').on('connection', socket => {
         console.log("Speech connected");
 
-        //socket.on('listening', (x) => console.log('listening: ' + x))
+        socket.on('listening', (x) => console.log('listening: ' + x))
+        
         speechIncomingEvents.map((x) => {
             socket.on(x, (data) => eventManager.emit(x, data))
           })
-
+        socket.on('destination', (x) => eventManager.emit('change-destination', x))
         // socket.on('speech', data => {
         //     console.log(data);
         //     if (CARTSTATE.state === 'transit-start' && data === 'pullover') {

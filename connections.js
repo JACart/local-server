@@ -31,6 +31,7 @@ module.exports = {
     'speech',
     'listening',
     // 'passenger-video',
+    'change-destination',
   ],
   uiIncomingEvents: [
     'change-destination',
