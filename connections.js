@@ -1,6 +1,19 @@
 module.exports = {
   // mongo: 'mongodb://localhost/jmu-local',
   cartId: 'jakart',
+  speechOutgoingEvents: [
+    'tts',
+    'get-destinations',
+  ],
+  speechIncomingEvents: [
+    'speech',
+    'listening',
+    'tts',
+    'pullover',
+    'destination',
+
+  ],
+
   uiOutgoingEvents: [
     'ui-init',
     'summon',
