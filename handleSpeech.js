@@ -24,6 +24,7 @@ module.exports = (io) => {
             socket.on(x, (data) => eventManager.emit(x, data))
           })
         socket.on('destination', (x) => eventManager.emit('change-destination', x))
+        socket.on('pullover', (x) => eventManager.emit('change-pullover', x))
         // socket.on('speech', data => {
         //     console.log(data);
         //     if (CARTSTATE.state === 'transit-start' && data === 'pullover') {
