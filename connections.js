@@ -3,7 +3,7 @@ module.exports = {
   cartId: 'jakart',
   speechOutgoingEvents: [
     'tts',
-    'get-destinations',
+    'get-destinations-name',
   ],
   speechIncomingEvents: [
     'speech',
