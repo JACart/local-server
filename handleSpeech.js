@@ -19,32 +19,15 @@ module.exports = (io) => {
         console.log("Speech connected")
         socket.emit('get-destinations-name', Object.keys(destinations))
         socket.on('listening', (x) => console.log('listening: ' + x))
-        
+
         speechIncomingEvents.map((x) => {
             socket.on(x, (data) => eventManager.emit(x, data))
-          })
+        })
         socket.on('destination', (x) => eventManager.emit('change-destination', x))
         socket.on('pullover', (x) => eventManager.emit('change-pullover', x))
-        // socket.on('speech', data => {
-        //     console.log(data);
-        //     if (CARTSTATE.state === 'transit-start' && data === 'pullover') {
-        //         // check if cart is 
-        //         eventEmitter.emit('pullover')
-        //     }
 
-        //     if (CARTSTATE.state === 'transit-start' && data === 'resume') {
-        //         // check if cart is 
-        //         eventEmitter.emit('resume-driving')
-        //     }
-        //     // if cart is stopped and user can pick destination
+        socket.on('transcript', (x) => console.log(x))
 
-        //     if (CARTSTATE.state === 'transit-start' && destinations[data]) {
-
-        //     }
-
-
-        // })
-        
     })
 }
 
