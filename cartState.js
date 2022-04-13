@@ -1,10 +1,11 @@
 global.CARTID = require('./connections').cartID
 const fs = require('fs')
 const destinations = require('./destinations')
-
+let lasttime = Date.now()
+let lastGPS = { latitude: null, longitude: null }
 let cartState
 global.CARTSTATE = () => cartState
-
+var distance = require('gps-distance');
 let pose = { passenger: false, safe: false }
 // let pose = {}
 
@@ -32,7 +33,8 @@ module.exports.init = (online = false, pose = true) => {
     pullover: false,
   }
   if (online) {
-    socket = io('http://157.245.126.151:10000/cart')
+    // socket = io('http://157.245.126.151:10000/cart')
+    socket = io('http://localhost:10000/cart')
     socket.on('pullover', (data) => {
       console.log(data)
       eventManager.emit('pullover', data)
@@ -61,6 +63,17 @@ module.exports.init = (online = false, pose = true) => {
   eventManager.on('change-destination', () => {
     cartState.state = 'summon-finish'
     writeState()
+  })
+
+
+  eventManager.on('gps', data => {
+    const diff = Date.now() - lasttime
+    if (lastGPS.latitude) {
+      const distance = distance(data.latitude, data.longitude, lastGPS.latitude, lastGPS.longitude)
+      console.log(distance / (diff / 1000 / 60)); //km/h
+    }
+    lasttime = Date.now()
+    lastGPS = data
   })
 
   onlineMode &&
