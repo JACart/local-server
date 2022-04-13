@@ -70,7 +70,7 @@ module.exports.init = (online = false, pose = true) => {
     const diff = Date.now() - lasttime
     if (lastGPS.latitude) {
       const distance = distance(data.latitude, data.longitude, lastGPS.latitude, lastGPS.longitude)
-      console.log(distance / (diff / 1000 / 60)); //km/h
+      console.log((distance / (diff / 1000 / 60)) / 1.609); //mph
     }
     lasttime = Date.now()
     lastGPS = data
