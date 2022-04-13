@@ -5,8 +5,8 @@ let lasttime = Date.now()
 let lastGPS = { latitude: null, longitude: null }
 let cartState
 global.CARTSTATE = () => cartState
-var distance = require('gps-distance');
 let pose = { passenger: false, safe: false }
+var distance = require('gps-distance');
 // let pose = {}
 
 const io = require('socket.io-client')
@@ -67,10 +67,16 @@ module.exports.init = (online = false, pose = true) => {
 
 
   eventManager.on('gps', data => {
+    
     const diff = Date.now() - lasttime
-    if (lastGPS.latitude) {
-      const distance = distance(data.latitude, data.longitude, lastGPS.latitude, lastGPS.longitude)
-      console.log((distance / (diff / 1000 / 60)) / 1.609); //mph
+    console.log("Diff: " + diff)
+    if (lastGPS.latitude && lastGPS.longitude && data.latitude && data.longitude) {
+      var dist = distance(data.latitude, data.longitude, lastGPS.latitude, lastGPS.longitude)
+      console.log("Distance: " + dist)
+      
+      var mph = dist / (diff / 1000 / 3600)
+      mph = Math.floor(mph)
+      console.log("mph: " + mph); //mph
     }
     lasttime = Date.now()
     lastGPS = data
