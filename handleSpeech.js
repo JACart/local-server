@@ -18,6 +18,7 @@ module.exports = (io) => {
     io.of('/speech').on('connection', socket => {
         console.log("Speech connected")
         socket.emit('get-destinations-name', Object.keys(destinations))
+        socket.emit('get-destinations', destinations)
         socket.on('listening', (x) => console.log('listening: ' + x))
 
         speechIncomingEvents.map((x) => {

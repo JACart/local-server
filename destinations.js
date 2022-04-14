@@ -14,7 +14,7 @@ module.exports = {
     latitude: 38.434376, 
     longitude: -78.864105,
     name: "King Hall",
-    speech: ["King", "King Hall"],
+    speech: ["King", "King Hall", "i sat"],
   },
   UREC: {
     latitude: 38.433973, 
@@ -50,7 +50,7 @@ module.exports = {
     latitude: 38.431662,
     longitude: -78.860880,
     name: "E-Hall",
-    speech: [""],
+    speech: ["E-Hall"],
   },
 
 
@@ -96,13 +96,13 @@ module.exports = {
     latitude: 38.432306, 
     longitude: -78.873984,
     name: "Sonner Hall",
-    speech: ["Sonner", "Sonner Hall", "sooner", "sooner", "sewn or hall"],
+    speech: ["Sonner", "Sonner Hall", "sooner", "sooner", "sewn or hall", "solder"],
   },
   XLabs: {
     latitude: 38.431618, 
     longitude: -78.875885,
     name: "X-Labs",
-    speech: ["x labs"],
+    speech: ["x labs", "eggs labs", "x laps", "eggs labs"],
   },
   
 

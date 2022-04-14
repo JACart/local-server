@@ -4,6 +4,7 @@ module.exports = {
   speechOutgoingEvents: [
     'tts',
     'get-destinations-name',
+    'get-destinations',
   ],
   speechIncomingEvents: [
     'speech',
