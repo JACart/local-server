@@ -32,13 +32,13 @@ module.exports = {
     latitude: 38.432885,
     longitude: -78.868613,
     name: "Convocation Center",
-    speech: ["Convocation Center", "Convo", "combo"],
+    speech: ["Convocation Center", "Convo", "combo", "convocation"],
   },
   EnGeo: {
     latitude: 38.433859,
     longitude: -78.862175,
     name: "Engineering",
-    speech: ["home", "Engineering", "in geo", "ngl", "india"],
+    speech: ["home", "Engineering", "in geo", "ngl", "india", "in jail"],
   },
   Shenandoah: {
     latitude: 38.431766,
@@ -50,7 +50,25 @@ module.exports = {
     latitude: 38.431662,
     longitude: -78.860880,
     name: "E-Hall",
-    speech: ["E-Hall"],
+    speech: ["E-Hall", "he hall", "he how", "e hall"],
+  },
+  Chandler: {
+    latitude: 38.432486,
+    longitude: -78.860455,
+    name: "Chandler",
+    speech: ["Chandler", "gender"],
+  },
+  Chesapeake: {
+    latitude: 38.432428,
+    longitude: -78.861864,
+    name: "Chesapeake",
+    speech: ["Chesapeake", "Chesapeake Hall"],
+  },
+  Festival: {
+    latitude: 38.433091,
+    longitude: -78.859923,
+    name: "Festival",
+    speech: ["Festival", "festi"],
   },
 
 
@@ -66,7 +84,7 @@ module.exports = {
     latitude: 38.436312, 
     longitude: -78.869054,
     name: "Huffman Hall",
-    speech: ["Huffman", "Huffman Hall", "huffman all"],
+    speech: ["Huffman", "Huffman Hall", "huffman all", "kaufman"],
   },
   Village: {
     latitude: 38.436514, 
@@ -78,25 +96,25 @@ module.exports = {
     latitude: 38.436154, 
     longitude: -78.870122,
     name: "Bookstore",
-    speech: ["Bookstore", "bookstores"],
+    speech: ["Bookstore", "bookstores", "books are"],
   },
   Showker: {
     latitude: 38.433298, 
     longitude: -78.872345,
     name: "Showker Hall",
-    speech: ["Showker", "Showker Hall", "shocker hall", "shocker", "shoulder"],
+    speech: ["Showker", "Showker Hall", "shocker hall", "shocker", "shoulder", "sugar", "show care", "show her"],
   },
   Hartman: {
     latitude: 38.432691, 
     longitude: -78.873119,
     name: "Hartman Hall",
-    speech: ["Hartman", "Hartman Hall", "hartman all"],
+    speech: ["Hartman", "Hartman Hall", "hartman all", "harman", "harming"],
   },
   Sonner: {
     latitude: 38.432306, 
     longitude: -78.873984,
     name: "Sonner Hall",
-    speech: ["Sonner", "Sonner Hall", "sooner", "sooner", "sewn or hall", "solder"],
+    speech: ["Sonner", "Sonner Hall", "sooner", "sooner", "sewn or hall", "solder", "sonic"],
   },
   XLabs: {
     latitude: 38.431618, 
@@ -123,21 +141,21 @@ module.exports = {
     latitude: 38.438533, 
     longitude: -78.867833,
     name: "Bell Hall",
-    speech: ["Bell", "Bell Hall", "bellhop"],
+    speech: ["Bell", "Bell Hall", "bellhop", "belt all"],
   },
   Union: {
     latitude: 38.437395, 
     longitude: -78.870531,
     name: "Madison Union",
-    speech: ["Union", "Madison Union"],
+    speech: ["Union", "Madison Union", "mass and union"],
   },
   DHall: {
     latitude: 38.437526, 
     longitude: -78.871589,
     name: "D-Hall",
-    speech: ["D hall", "deal", "dining hall"],
+    speech: ["D hall", "deal", "dining hall", "dee hall"],
   },
-  dukesdining: {
+  Dukes: {
     latitude: 38.438764, 
     longitude: -78.870600,
     name: "Dukes Dining",
@@ -172,6 +190,18 @@ module.exports = {
     longitude: -78.872069,
     name: "Hillcrest House",
     speech: ["hillcrest house", "hillcrest", "honors", "honors college"],
+  },
+  Health: {
+    latitude: 38.439817, 
+    longitude: -78.870606,
+    name: "Health & Behavioral Science",
+    speech: ["Health", "Health and Behavioral", "montiplier"],
+  },
+  Wampler: {
+    latitude: 38.439186, 
+    longitude: -78.875463,
+    name: "Wampler Hall",
+    speech: ["Wampler", "wham puller", "rambler", "wham polar"],
   },
   
 /*
@@ -214,18 +244,18 @@ module.exports = {
     name: "Diner",
     speech: [""],
   },
-  */
   festival: {
     latitude: 38.433019,
     longitude: -78.859893,
     name: "Festival",
     speech: ["festival", "festi"],
   },
-  gym: {
+*/
+  rest: {
     latitude: 38.43352,
     longitude: -78.86257,
-    name: "gym",
-    speech: ["gym", "jim"],
+    name: "Rest Stop",
+    speech: ["rest stop", "rest"],
   },
 /*
   chesapeake: {
