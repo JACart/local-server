@@ -16,6 +16,7 @@ module.exports = (io) => {
     socket.emit('get-destinations', destinations)
     uiSocket = socket
     socket.on('pullover', (x) => console.log('pullover: ' + x))
+    socket.on('speed', (x) => console.log("Speed: " + x))
     uiIncomingEvents.map((x) => {
       socket.on(x, (data) => eventManager.emit(x, data))
     })

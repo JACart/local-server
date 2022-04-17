@@ -122,6 +122,12 @@ module.exports = {
     name: "X-Labs",
     speech: ["x labs", "eggs labs", "x laps", "eggs labs"],
   },
+  greek: {
+    latitude: 38.434647,
+    longitude: -78.875531,
+    name: "Greek Row",
+    speech: ["Greek Row", "greek"],
+  },
   
 
   //Main Campus

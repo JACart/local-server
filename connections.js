@@ -34,6 +34,7 @@ module.exports = {
     // 'passenger-video',
     'change-destination',
     'change-pullover',
+    'mph',
   ],
   uiIncomingEvents: [
     'change-destination',
@@ -42,6 +43,7 @@ module.exports = {
     'pullover',
     'resume-driving',
     'tts',
+    'speed',
   ],
   rosIncomingEvents: [
     'gps',

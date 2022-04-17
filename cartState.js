@@ -76,7 +76,8 @@ module.exports.init = (online = false, pose = true) => {
       
       var mph = dist / (diff / 1000 / 3600)
       mph = Math.floor(mph)
-      console.log("mph: " + mph); //mph
+      console.log("mph: " + mph) //mph
+      eventManager.emit('mph', mph)
     }
     lasttime = Date.now()
     lastGPS = data
@@ -137,6 +138,7 @@ module.exports.init = (online = false, pose = true) => {
     })
 
   eventManager.on('destination', (name) => {
+    console.log(name)
     function driveToDestination() {
       eventManager.emit('tts', "Destination selected, Heading to " + name)
       //if (pose.passenger && pose.safe) {
