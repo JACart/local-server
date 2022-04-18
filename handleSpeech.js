@@ -1,6 +1,7 @@
 const socket = require('socket.io-client/lib/socket');
 const { speechOutgoingEvents, speechIncomingEvents } = require('./connections.js')
-// global.TRANSCRIPT = () => transcript
+
+var transcript;
 
 module.exports = (io) => {
 
@@ -28,8 +29,7 @@ module.exports = (io) => {
         socket.on('destination', (x) => eventManager.emit('change-destination', x))
         socket.on('pullover', (x) => eventManager.emit('change-pullover', x))
 
-        // socket.on('transcript', (x) =>
-        //     transcript = x)
+        socket.on('transcript', (x) => eventManager.emit('logs', x))
     })
 }
 
