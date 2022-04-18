@@ -85,6 +85,8 @@ module.exports.init = (online = false, pose = true) => {
     lastGPS = data
   })
 
+  // onlineMode && socket.emit('logs', TRANSCRIPT())
+
 
 
   onlineMode &&
