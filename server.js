@@ -18,7 +18,14 @@ global.eventManager = new events()
     cartState.init(args.includes('online'), args.includes('pose'))
     handleUI(io)
     handleSpeech(io)
-    require('./handleROSLib')()
+
+    // DO NOT COMMENT OUT REQUIRE: Use true if ROS is enabled. False to test cart without ros
+    if (false) {
+      require('./handleROSLib')()
+    } else {
+      console.log("\n\n\nROS DISABLED\n\n\n")
+    }
+
     handleROS(io) // socket io
     server.listen(8022, () => {
       console.log('local-socket-server started at ' + 8022)

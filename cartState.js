@@ -151,14 +151,13 @@ module.exports.init = (online = false, pose = true) => {
 
     console.log(name)
     function driveToDestination() {
-      eventManager.emit('tts', "Destination selected, Heading to " + name)
       //if (pose.passenger && pose.safe) {
       if (true) {
         if (destinations[name]) {
           cartState.destination = name
-
           setTimeout(() => {
             cartState.state = 'transit-start'
+            eventManager.emit('tts', "Destination selected, Heading to " + destinations[name].pronun)
             eventManager.emit('drive-to', destinations[name])
             eventManager.emit('ui-init', cartState)
             onlineMode && socket.emit('destination', name)
@@ -183,7 +182,7 @@ module.exports.init = (online = false, pose = true) => {
     console.log('PULL OVER')
     cartState.pullover = x
     if (x) {
-      eventManager.emit('tts', "Pullover Invoked. Cart is stopping.")
+      eventManager.emit('tts', "Cart is pulling over.")
     } else {
       eventManager.emit('tts', "Resuming to drive.")
     }
