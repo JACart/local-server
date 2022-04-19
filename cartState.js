@@ -34,8 +34,8 @@ module.exports.init = (online = false, pose = true) => {
   }
   if (online) {
     // socket = io('http://157.245.126.151:10000/cart')
-    // socket = io('http://localhost:10000/cart')
-    socket = io('https://cart.av.cise.jmu.edu/cart')
+    socket = io('http://localhost:10000/cart')
+    // socket = io('https://cart.av.cise.jmu.edu/cart')
     socket.on('pullover', (data) => {
       console.log(data)
       eventManager.emit('pullover', data)
@@ -146,6 +146,9 @@ module.exports.init = (online = false, pose = true) => {
     })
 
   eventManager.on('destination', (name) => {
+
+    onlineMode && socket.emit('destination', name) //sending the destination to the cloud
+
     console.log(name)
     function driveToDestination() {
       eventManager.emit('tts', "Destination selected, Heading to " + name)
