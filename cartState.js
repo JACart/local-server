@@ -34,8 +34,8 @@ module.exports.init = (online = false, pose = true) => {
   }
   if (online) {
     // socket = io('http://157.245.126.151:10000/cart')
-    socket = io('http://localhost:10000/cart')
-    // socket = io('https://cart.av.cise.jmu.edu/cart')
+    // socket = io('http://localhost:10000/cart')
+    socket = io('https://cart.av.cise.jmu.edu/cart')
     socket.on('pullover', (data) => {
       console.log(data)
       eventManager.emit('pullover', data)
@@ -181,7 +181,6 @@ module.exports.init = (online = false, pose = true) => {
   eventManager.on('pullover', (x) => {
     console.log('PULL OVER')
     cartState.pullover = x
-    console.log("Sending to the cloud: " + x)
     onlineMode && socket.emit('pullover', x)
     if (x) {
       eventManager.emit('tts', "Pullover Invoked. Cart is stopping.")
