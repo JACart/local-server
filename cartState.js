@@ -34,8 +34,8 @@ module.exports.init = (online = false, pose = true) => {
   }
   if (online) {
     // socket = io('http://157.245.126.151:10000/cart')
-    // socket = io('http://localhost:10000/cart')
-    socket = io('https://cart.av.cise.jmu.edu/cart')
+    socket = io('http://localhost:10000/cart')
+    // socket = io('https://cart.av.cise.jmu.edu/cart')
     socket.on('pullover', (data) => {
       console.log(data)
       eventManager.emit('pullover', data)
@@ -146,16 +146,18 @@ module.exports.init = (online = false, pose = true) => {
     })
 
   eventManager.on('destination', (name) => {
+
+    onlineMode && socket.emit('destination', name) //sending the destination to the cloud
+
     console.log(name)
     function driveToDestination() {
-      eventManager.emit('tts', "Destination selected, Heading to " + name)
       //if (pose.passenger && pose.safe) {
       if (true) {
         if (destinations[name]) {
           cartState.destination = name
-
           setTimeout(() => {
             cartState.state = 'transit-start'
+            eventManager.emit('tts', "Destination selected, Heading to " + destinations[name].pronun)
             eventManager.emit('drive-to', destinations[name])
             eventManager.emit('ui-init', cartState)
             onlineMode && socket.emit('destination', name)
@@ -180,8 +182,12 @@ module.exports.init = (online = false, pose = true) => {
     console.log('PULL OVER')
     cartState.pullover = x
     if (x) {
+<<<<<<< HEAD
       eventManager.emit('tts', "Pullover Invoked. Cart is stopping.")
       onlineMode && socket.emit('pullover', x)
+=======
+      eventManager.emit('tts', "Cart is pulling over.")
+>>>>>>> 3bbe0f82f118c0ba4018b1f9865320cff68b56cf
     } else {
       eventManager.emit('tts', "Resuming to drive.")
       onlineMode && socket.emit('pullover', x)
