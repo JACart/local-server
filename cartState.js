@@ -181,12 +181,11 @@ module.exports.init = (online = false, pose = true) => {
   eventManager.on('pullover', (x) => {
     console.log('PULL OVER')
     cartState.pullover = x
+    onlineMode && socket.emit('pullover', x)
     if (x) {
       eventManager.emit('tts', "Pullover Invoked. Cart is stopping.")
-      onlineMode && socket.emit('pullover', x)
     } else {
       eventManager.emit('tts', "Resuming to drive.")
-      onlineMode && socket.emit('pullover', x)
     }
     writeState()
   })
