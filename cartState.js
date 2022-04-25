@@ -40,6 +40,11 @@ module.exports.init = (online = false, pose = true) => {
       console.log(data)
       eventManager.emit('pullover', data)
     })
+    socket.on('destination', (data) => {
+      console.log(data)
+      eventManager.emit('destination', data)
+    })
+    
   } else {
     socket = null
     cartState.state = 'summon-finish'
