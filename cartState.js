@@ -38,7 +38,6 @@ module.exports.init = (online = false, pose = true) => {
     // socket = io('https://cart.av.cise.jmu.edu/cart')
     socket.on('pullover', (data) => {
       console.log(data)
-      onlineMode && socket.emit('pullover', data)
       eventManager.emit('pullover', data)
     })
     socket.on('destination', (data) => {
@@ -186,6 +185,7 @@ module.exports.init = (online = false, pose = true) => {
 
   eventManager.on('pullover', (x) => {
     console.log('PULL OVER')
+    onlineMode && socket.emit('pullover', data)
     cartState.pullover = x
     if (x) {
       eventManager.emit('tts', "Pullover Invoked. Cart is stopping.")
