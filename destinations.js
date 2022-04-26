@@ -58,7 +58,7 @@ module.exports = {
     longitude: -78.860880,
     name: "E-Hall",
     speech: ["E-Hall", "he hall", "he how", "e hall"],
-    pronun: "E Hall",
+    pronun: "E-Hall",
   },
   Chandler: {
     latitude: 38.432486,

@@ -26,7 +26,7 @@ module.exports = (io) => {
         speechIncomingEvents.map((x) => {
             socket.on(x, (data) => eventManager.emit(x, data))
         })
-        socket.on('destination', (x) => eventManager.emit('change-destination', x))
+        //socket.on('destination', (x) => eventManager.emit('change-destination', x))
         socket.on('pullover', (x) => eventManager.emit('change-pullover', x))
 
         socket.on('transcript', (x) => eventManager.emit('logs', x))

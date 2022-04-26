@@ -44,7 +44,10 @@ module.exports.init = (online = false, pose = true) => {
       console.log(data)
       eventManager.emit('destination', data)
     })
-
+    socket.on('tts', (data) => {
+      eventManager.emit('tts', data)
+    })
+    socket.emit('get-destinations', destinations)
   } else {
     socket = null
     cartState.state = 'summon-finish'
@@ -153,6 +156,7 @@ module.exports.init = (online = false, pose = true) => {
   eventManager.on('destination', (name) => {
 
     onlineMode && socket.emit('destination', name) //sending the destination to the cloud
+    
 
     console.log(name)
     function driveToDestination() {
@@ -167,6 +171,7 @@ module.exports.init = (online = false, pose = true) => {
             eventManager.emit('ui-init', cartState)
             onlineMode && socket.emit('destination', name)
             onlineMode && socket.emit('transit-start', cartState)
+            eventManager.emit('change-destination', name)
           }, 4)
           // might need to remove json.stringify
           writeState()
@@ -185,7 +190,7 @@ module.exports.init = (online = false, pose = true) => {
 
   eventManager.on('pullover', (x) => {
     console.log('PULL OVER')
-    onlineMode && socket.emit('pullover', data)
+    onlineMode && socket.emit('pullover', x)
     cartState.pullover = x
     if (x) {
       eventManager.emit('tts', "Pullover Invoked. Cart is stopping.")
