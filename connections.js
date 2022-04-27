@@ -23,7 +23,7 @@ module.exports = {
     'summon-cancel',
     'summon-finish',
     'path',
-    // 'gps',
+    'gps',
     // 'transit-start', // change
     // 'transit-end',
     'audio',
@@ -53,6 +53,7 @@ module.exports = {
     // 'audio',
     'passenger-video',
     'cart-video',
+    'velocity',
     // 'passenger-exit',
   ],
   rosOutgoingEvents: [

@@ -17,6 +17,10 @@ module.exports = (io) => {
     socket.on('disconnect', () => {
       cartState.rosDisconnect()
     })
+
+    socket.on('velocity', (data) => {
+      eventManager.emit('mph', Math.floor(data))
+    })
   })
   io.of('/ros').on('error', async (socket) => {
     console.log('error connecting -- reconnecting')
