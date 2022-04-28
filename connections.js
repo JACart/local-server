@@ -53,7 +53,6 @@ module.exports = {
     // 'audio',
     'passenger-video',
     'cart-video',
-    'velocity',
     // 'passenger-exit',
   ],
   rosOutgoingEvents: [

@@ -77,21 +77,21 @@ module.exports.init = (online = false, pose = true) => {
 
   eventManager.on('gps', data => {
 
-    const diff = Date.now() - lasttime
-    console.log("Diff: " + diff)
-    // if (lastGPS.latitude && lastGPS.longitude && data.latitude && data.longitude) {
-    //   var dist = distance(data.latitude, data.longitude, lastGPS.latitude, lastGPS.longitude)
-    //   console.log("Distance: " + dist)
+    // const diff = Date.now() - lasttime
+    // // console.log("Diff: " + diff)
+    // // if (lastGPS.latitude && lastGPS.longitude && data.latitude && data.longitude) {
+    // //   var dist = distance(data.latitude, data.longitude, lastGPS.latitude, lastGPS.longitude)
+    // //   console.log("Distance: " + dist)
 
-    //   var mph = dist / (diff / 1000 / 3600)
-    //   mph = Math.floor(mph)
-    //   console.log("mph: " + mph) //mph
-    //   eventManager.emit('mph', mph)
+    // //   var mph = dist / (diff / 1000 / 3600)
+    // //   mph = Math.floor(mph)
+    // //   console.log("mph: " + mph) //mph
+    // //   eventManager.emit('mph', mph)
 
-    //   onlineMode && socket.emit('speed', mph) //sending the speed to the cloud
-    // }
-    lasttime = Date.now()
-    lastGPS = data
+    // //   onlineMode && socket.emit('speed', mph) //sending the speed to the cloud
+    // // }
+    // lasttime = Date.now()
+    // lastGPS = data
   })
 
   eventManager.on('logs', data => {

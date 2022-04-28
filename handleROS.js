@@ -18,10 +18,6 @@ module.exports = (io) => {
       cartState.rosDisconnect()
     })
 
-    socket.on('velocity', (data) => {
-      //Convert Kilometer Per Her to MPH
-      eventManager.emit('mph', Math.floor(data * 0.621371))
-    })
   })
   io.of('/ros').on('error', async (socket) => {
     console.log('error connecting -- reconnecting')
