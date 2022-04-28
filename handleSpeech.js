@@ -30,6 +30,7 @@ module.exports = (io) => {
         socket.on('pullover', (x) => eventManager.emit('change-pullover', x))
 
         socket.on('transcript', (x) => eventManager.emit('logs', x))
+        socket.on('transcript', (x) => console.log(x))
     })
 }
 

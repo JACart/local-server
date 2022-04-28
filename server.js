@@ -5,6 +5,7 @@ const cartState = require('./cartState')
 const handleUI = require('./handleUI')
 const handleROS = require('./handleROS')
 const handleSpeech = require('./handleSpeech')
+const handleOnline = require('./handleOnline')
 
 const events = require('events').EventEmitter
 
@@ -15,12 +16,17 @@ app.get('/state', (req, res) => {
 global.eventManager = new events()
   ; (async function init() {
     const args = process.argv.slice(2)
+    console.log(args)
     cartState.init(args.includes('online'), args.includes('pose'))
     handleUI(io)
     handleSpeech(io)
-
-    // DO NOT COMMENT OUT REQUIRE: Use true if ROS is enabled. False to test cart without ros
-    if (false) {
+    
+    if (args.includes('online')) {
+      handleOnline(io)
+    }
+    
+    //pass 'rosoff' on start to turn off ROS. no args runs ROS
+    if (!args.includes('rosoff')) {
       require('./handleROSLib')()
     } else {
       console.log("\n\n\nROS DISABLED\n\n\n")
