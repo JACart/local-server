@@ -110,8 +110,8 @@ function subscribeToTopics() {
 
   new ROSLIB.Topic({
     ros: ros,
-    name: '/estimated_vel',
-    messageType: 'std_msgs/String',
+    name: '/estimated_vel_kmph',
+    messageType: 'std_msgs/Float32',
   }).subscribe((x) => {
     console.log("ROS speed: " + x.data)
     eventManager.emit('velocity', x.data)

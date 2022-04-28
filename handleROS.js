@@ -19,7 +19,8 @@ module.exports = (io) => {
     })
 
     socket.on('velocity', (data) => {
-      eventManager.emit('mph', Math.floor(data))
+      //Convert Kilometer Per Her to MPH
+      eventManager.emit('mph', Math.floor(data * 0.621371))
     })
   })
   io.of('/ros').on('error', async (socket) => {
