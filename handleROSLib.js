@@ -57,6 +57,11 @@ eventManager.on('tts', (speech) => {
   tts(speech)
 })
 
+eventManager.on('speed', (data) => {
+  console.log('Speed: ' + data)
+  changeSpeed(data)
+})
+
 ros.on('connection', function () {
   console.log('Connected to websocket server.')
   subscribeToTopics()
@@ -123,7 +128,7 @@ function subscribeToTopics() {
     messageType: 'std_msgs/String',
   }).subscribe((x) => {
     console.log(x.data)
-    eventManager.emit('speech', x.data)
+    eventManager.emit('tts', x.data)
   })
 
   new ROSLIB.Topic({
@@ -181,6 +186,20 @@ function tts(str) {
   })
 
   console.log('Publishing  TTS request')
+  topic.publish(msg)
+}
+
+function changeSpeed(speed) {
+  const topic = new ROSLIB.Topic({
+    ros: ros,
+    name: '/speed_setting',
+    messageType: 'std_msgs/Float32',
+  })
+  const msg = new ROSLIB.Message({
+    data: speed,
+  })
+
+  console.log('Publishing speed change: ' + speed)
   topic.publish(msg)
 }
 
