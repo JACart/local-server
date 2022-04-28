@@ -62,6 +62,16 @@ module.exports = {
     'resume-driving',
     'drive-to',
   ],
+
+  onlineIncomingEvents: [
+    'pullover',
+    'destination',
+  ],
+
+  onlineOutgoingEvents: [
+    'destinations',
+    'transcript',
+  ],
 }
 
 /* base state

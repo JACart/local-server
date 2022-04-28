@@ -21,7 +21,7 @@ module.exports.init = (online = false, pose = true) => {
     }`
   )
   POSE = pose
-  onlineMode = online
+  onlineMode = false
   cartState = {
     destination: '',
     active: true,

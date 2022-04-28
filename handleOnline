@@ -1,0 +1,25 @@
+const ioS = require('socket.io-client')
+const socket = ioS('http://localhost:10000/cart')
+//const socket = ioS('https://cart.av.cise.jmu.edu/cart')
+const { onlineIncomingEvents, onlineOutgoingEvents } = require('./connections.js')
+
+module.exports = (io) => {
+    
+    onlineOutgoingEvents.map((x) => {
+        eventManager.on(x, (data) => {
+            io.of('/speech').emit(x, data)
+        })
+    })
+
+    
+
+    console.log("Init speech");
+
+    const destinations = require('./destinations')
+
+    //io.of('/speech').on('connection', socket => {
+        onlineIncomingEvents.map((x) => {
+            socket.on(x, (data) => eventManager.emit(x, data))
+        })
+    //})
+}
