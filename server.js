@@ -1,6 +1,7 @@
 const app = require('express')()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+const ioC = require('socket.io-client')
 const cartState = require('./cartState')
 const handleUI = require('./handleUI')
 const handleROS = require('./handleROS')

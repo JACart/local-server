@@ -17,7 +17,7 @@ module.exports = (io) => {
     socket.on('disconnect', () => {
       cartState.rosDisconnect()
     })
-
+ 
   })
   io.of('/ros').on('error', async (socket) => {
     console.log('error connecting -- reconnecting')

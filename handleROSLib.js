@@ -19,7 +19,7 @@ module.exports = () => {
 }
 
 eventManager.on('change-destination', () => {
-  pulloverHelper(true)
+  pulloverHelper(false)
 })
 
 eventManager.on('pose', (x) => {

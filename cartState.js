@@ -36,18 +36,18 @@ module.exports.init = (online = false, pose = true) => {
     // socket = io('http://157.245.126.151:10000/cart')
     socket = io('http://localhost:10000/cart')
     // socket = io('https://cart.av.cise.jmu.edu/cart')
-    socket.on('pullover', (data) => {
-      console.log(data)
-      eventManager.emit('pullover', data)
-    })
-    socket.on('destination', (data) => {
-      console.log(data)
-      eventManager.emit('destination', data)
-    })
-    socket.on('tts', (data) => {
-      eventManager.emit('tts', data)
-    })
-    socket.emit('get-destinations', destinations)
+    // socket.on('pullover', (data) => {
+    //   console.log(data)
+    //   eventManager.emit('pullover', data)
+    // })
+    // socket.on('destination', (data) => {
+    //   console.log(data)
+    //   eventManager.emit('destination', data)
+    // })
+    // // socket.on('tts', (data) => {
+    // //   eventManager.emit('tts', data)
+    // // })
+    // socket.emit('get-destinations', destinations)
   } else {
     socket = null
     cartState.state = 'summon-finish'
@@ -58,11 +58,11 @@ module.exports.init = (online = false, pose = true) => {
 
   eventManager.on('gps', (data) => {
     // console.log(data)
-    onlineMode && socket.emit('gps', data)
+    //onlineMode && socket.emit('gps', data)
   })
 
   eventManager.on('path', (data) => {
-    onlineMode && socket.emit('path', data)
+    //onlineMode && socket.emit('path', data)
   })
 
   eventManager.on('pose', (x) => {
@@ -96,13 +96,13 @@ module.exports.init = (online = false, pose = true) => {
 
   eventManager.on('logs', data => {
     // console.log(data)
-    onlineMode && socket.emit('logs', data)
+    //onlineMode && socket.emit('logs', data)
   })
 
-  onlineMode &&
-    socket.on('connect', () => {
-      onlineMode && socket.emit('cart-connect', cartState)
-    })
+  // onlineMode &&
+  //   socket.on('connect', () => {
+  //     onlineMode && socket.emit('cart-connect', cartState)
+  //   })
 
   // setTimeout(() => {
   //   cartState.userId = 'test'
@@ -155,7 +155,7 @@ module.exports.init = (online = false, pose = true) => {
 
   eventManager.on('destination', (name) => {
 
-    onlineMode && socket.emit('destination', name) //sending the destination to the cloud
+    //onlineMode && socket.emit('destination', name) //sending the destination to the cloud
     
 
     console.log(name)
@@ -169,8 +169,8 @@ module.exports.init = (online = false, pose = true) => {
             eventManager.emit('tts', "Destination selected, Heading to " + destinations[name].pronun)
             eventManager.emit('drive-to', destinations[name])
             eventManager.emit('ui-init', cartState)
-            onlineMode && socket.emit('destination', name)
-            onlineMode && socket.emit('transit-start', cartState)
+            //onlineMode && socket.emit('destination', name)
+            //onlineMode && socket.emit('transit-start', cartState)
             eventManager.emit('change-destination', name)
           }, 4)
           // might need to remove json.stringify
@@ -190,7 +190,8 @@ module.exports.init = (online = false, pose = true) => {
 
   eventManager.on('pullover', (x) => {
     console.log('PULL OVER')
-    onlineMode && socket.emit('pullover', x)
+    eventManager.emit('change-pullover', x)
+    //onlineMode && socket.emit('pullover', x)
     cartState.pullover = x
     if (x) {
       eventManager.emit('tts', "Pullover Invoked. Cart is stopping.")
@@ -219,7 +220,7 @@ module.exports.init = (online = false, pose = true) => {
             writeState()
             eventManager.emit('ui-init', cartState)
             console.log('passenger got out exiting still in')
-            onlineMode && socket.emit('passenger-exit')
+            //onlineMode && socket.emit('passenger-exit')
           } else {
             console.log('passenger still in')
           }
@@ -229,7 +230,7 @@ module.exports.init = (online = false, pose = true) => {
     writeState()
     eventManager.emit('tts', "Arrived.")
     eventManager.emit('ui-init', cartState)
-    onlineMode && socket.emit(cartState.state)
+    //onlineMode && socket.emit(cartState.state)
   })
 
   // cartState = JSON.parse(fs.readFileSync('../cart.json', 'utf-8'))
@@ -249,6 +250,7 @@ module.exports.rosConnect = () => {
   cartState.active = true
   setTimeout(() => {
     onlineMode && socket.emit('cart-active', true)
+    socket.emit('cart-active', true)
     writeState()
     // console.log(cartState);
     eventManager.emit('ui-init', cartState)

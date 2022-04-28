@@ -65,11 +65,22 @@ module.exports = {
   onlineIncomingEvents: [
     'pullover',
     'destination',
+    'tts',
   ],
 
   onlineOutgoingEvents: [
-    'destinations',
     'transcript',
+    'get-destinations',
+    'gps',
+    'path',
+    'logs',
+    'mph',
+    'connect',
+    'summon-cancel',
+    'summon-finish',
+    'change-pullover',
+    'change-destination',
+    'cart-active',
   ],
 }
 
