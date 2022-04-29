@@ -250,7 +250,7 @@ module.exports.rosConnect = () => {
   cartState.active = true
   setTimeout(() => {
     onlineMode && socket.emit('cart-active', true)
-    socket.emit('cart-active', true)
+    //socket.emit('cart-active', true)
     writeState()
     // console.log(cartState);
     eventManager.emit('ui-init', cartState)
