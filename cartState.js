@@ -99,11 +99,13 @@ module.exports.init = (online = false, pose = true) => {
     //onlineMode && socket.emit('logs', data)
   })
 
+  // TODO: Remove. Check if handleOnline works.
   // onlineMode &&
   //   socket.on('connect', () => {
   //     onlineMode && socket.emit('cart-connect', cartState)
   //   })
 
+  // TODO: Remove? was commented out before.
   // setTimeout(() => {
   //   cartState.userId = 'test'
   //   cartState.latitude = 38.433095
@@ -118,24 +120,27 @@ module.exports.init = (online = false, pose = true) => {
   //   onlineMode && socket.emit('path', Object.values(destinations))
   // }, 2000)
 
-  onlineMode &&
-    socket.on('summon-cancel', () => {
-      eventManager.emit('summon-cancel')
-      cartState.state = 'idle'
-      cartState.userId = ''
-        ; (cartState.destination = ''), writeState()
-      eventManager.emit('ui-init', cartState)
-    })
+  // TODO: Remove. Check if handleOnline works.
+  // onlineMode &&
+  //   socket.on('summon-cancel', () => {
+  //     eventManager.emit('summon-cancel')
+  //     cartState.state = 'idle'
+  //     cartState.userId = ''
+  //       ; (cartState.destination = ''), writeState()
+  //     eventManager.emit('ui-init', cartState)
+  //   })
 
-  onlineMode &&
-    socket.on('reset-client', () => {
-      eventManager.emit('reset-client')
-      cartState.state = 'idle'
-      cartState.destination = ''
-      cartState.userId = ''
-      writeState()
-    })
+  // TODO: Remove. Check if handleOnline works.
+  // onlineMode &&
+  //   socket.on('reset-client', () => {
+  //     eventManager.emit('reset-client')
+  //     cartState.state = 'idle'
+  //     cartState.destination = ''
+  //     cartState.userId = ''
+  //     writeState()
+  //   })
 
+  // TODO: Remove. Check if handleOnline works.
   onlineMode &&
     socket.on('summon', (data) => {
       console.log('cart summoned')
