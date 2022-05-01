@@ -1,6 +1,8 @@
 const io = require('socket.io-client')
-const socket = io('http://localhost:10000/cart')
-//const socket = io('https://cart.av.cise.jmu.edu/cart')
+// const socket = io('http://localhost:10000/cart')
+const socket = io('https://cart.av.cise.jmu.edu/cart')
+const cartState = require('./cartState')
+const destinations = require('./destinations')
 
 const { onlineIncomingEvents, onlineOutgoingEvents } = require('./connections.js')
 
@@ -28,6 +30,8 @@ module.exports = (nsp) => {
   })
 
   //Individual events
+  socket.emit('get-destinations', destinations)
+
   socket.on('summon-cancel', () => {
     eventManager.emit('summon-cancel')
     cartState.state = 'idle'
@@ -38,9 +42,9 @@ module.exports = (nsp) => {
 
   socket.on('reset-client', () => {
     eventManager.emit('reset-client')
-    cartState.state = 'idle'
-    cartState.destination = ''
-    cartState.userId = ''
+    CARTSTATE.state = 'idle'
+    CARTSTATE.destination = ''
+    CARTSTATE.userId = ''
     writeState()
   })
 }
