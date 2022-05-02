@@ -118,7 +118,7 @@ function subscribeToTopics() {
     name: '/estimated_vel_kmph',
     messageType: 'std_msgs/Float32',
   }).subscribe((x) => {
-    console.log("ROS speed: " + Math.round(x.data * 0.621371))
+    // console.log("ROS speed: " + Math.round(x.data * 0.621371))
     eventManager.emit('mph', Math.round(x.data * 0.621371))
   })
  
