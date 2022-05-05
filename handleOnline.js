@@ -21,14 +21,8 @@ module.exports = (nsp) => {
   socket.on('connect', () => {
     console.log('CONNECTED: Online Socket Connected.')
     socket.emit('cart-connect', cartState)
-  })
-  socket.on('connect_error', (x) => console.log('Online Socket Error: ' + x))
-  socket.on('disconnect', () => console.log('DISCONNECTED: Online Socket Disconnected.'))
 
-  //Event mapper. Maps incoming events from connections.js
-  onlineIncomingEvents.map((x) => {
-      socket.on(x, (data) => eventManager.emit(x, data))
-  })
+
 
   //Individual events
   socket.emit('get-destinations', destinations)
@@ -48,4 +42,15 @@ module.exports = (nsp) => {
     CARTSTATE.userId = ''
     writeState()
   })
+
+
+  })
+  socket.on('connect_error', (x) => console.log('Online Socket Error: ' + x))
+  socket.on('disconnect', () => console.log('DISCONNECTED: Online Socket Disconnected.'))
+
+  //Event mapper. Maps incoming events from connections.js
+  onlineIncomingEvents.map((x) => {
+      socket.on(x, (data) => eventManager.emit(x, data))
+  })
+
 }
