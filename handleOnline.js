@@ -19,10 +19,11 @@ module.exports = (nsp) => {
 
   //Connection sockets
   socket.on('connect', () => {
-    console.log('Online Socket Connected.')
+    console.log('CONNECTED: Online Socket Connected.')
     socket.emit('cart-connect', cartState)
   })
   socket.on('connect_error', (x) => console.log('Online Socket Error: ' + x))
+  socket.on('disconnect', () => console.log('DISCONNECTED: Online Socket Disconnected.'))
 
   //Event mapper. Maps incoming events from connections.js
   onlineIncomingEvents.map((x) => {
