@@ -9,6 +9,7 @@ const handleSpeech = require('./handleSpeech')
 const handleOnline = require('./handleOnline')
 
 const events = require('events').EventEmitter
+const handleZig = require('./handleZig')
 
 app.get('/state', (req, res) => {
   res.send('ok ok')
@@ -21,6 +22,7 @@ global.eventManager = new events()
     cartState.init(args.includes('online'), args.includes('pose'))
     handleUI(io)
     handleSpeech(io)
+    handleZig(io)
     
     if (args.includes('online')) {
       handleOnline(io)
