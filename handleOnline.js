@@ -43,7 +43,7 @@ module.exports = (nsp) => {
     writeState()
   })
 
-  socket.emit('cart-status', (CARTSTATUS()))
+  socket.emit('cart-status', (CARTSTATE()))
 
   })
   socket.on('connect_error', (x) => console.log('Online Socket Error: ' + x))

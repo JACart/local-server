@@ -22,7 +22,7 @@ global.eventManager = new events()
     cartState.init(args.includes('online'), args.includes('pose'))
     handleUI(io)
     handleSpeech(io)
-    handleZig(io)
+    // handleZig(io)
     
     if (args.includes('online')) {
       handleOnline(io)
