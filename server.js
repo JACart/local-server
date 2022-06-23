@@ -21,6 +21,6 @@ global.eventManager = new events()
   require('./handleROSLib')()
   server.listen(8021, () => {
     console.log('local-socket-server started at ' + 8021)
-    // cartState.rosConnect()
+    cartState.rosConnect()
   })
 })()
