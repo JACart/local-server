@@ -34,6 +34,10 @@ global.eventManager = new events()
     } else {
       console.log("\n\n\nROS DISABLED\n\n\n")
     }
+    if (args.includes('fullmap')) {
+      eventManager.emit('fullMap', true)
+      console.log("\nFULL MAP\n")
+    }
 
     handleROS(io) // socket io
     server.listen(8022, () => {

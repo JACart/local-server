@@ -7,6 +7,7 @@ module.exports = {
     name: {name},       //String being displayed on UI
     speech: {[x,y,z]},   //Different names for speech system to recognize
     pronun: {string},   //Pronunciation for Text-To-Speech
+    fullMap: {boolean}, //If destination requires full map data point cloud
   },
 */
 
@@ -17,6 +18,7 @@ module.exports = {
     name: "King Hall",
     speech: ["King", "King Hall", "i sat"],
     pronun: "King Hall",
+    fullMap: true,
   },
   UREC: {
     latitude: 38.434092, 
@@ -24,6 +26,7 @@ module.exports = {
     name: "UREC",
     speech: ["UREC", "you wreck", "you rack", "Recreation", "Recreation Center","gym", "jim", "iraq"],
     pronun: "you wreck",
+    fullMap: true,
   },
   Jennings: {
     latitude: 38.430754, 
@@ -31,6 +34,7 @@ module.exports = {
     name: "Jennings Hall",
     speech: ["Jennings", "Jenning", "Jennings Hall", "Jenning Hall", "Paul Jenning", "Paul Jennings", "Paul Jennings Hall", "Paul Jenning Hall", "getting", "Paul getting"],
     pronun: "Jennings Hall",
+    fullMap: true,
   },
   Convo: {
     latitude: 38.432975,
@@ -38,6 +42,7 @@ module.exports = {
     name: "Convocation Center",
     speech: ["Convocation Center", "Convo", "combo", "convocation"],
     pronun: "Convocation Center",
+    fullMap: true,
   },
   EnGeo: {
     latitude: 38.433859,
@@ -45,6 +50,7 @@ module.exports = {
     name: "EnGeo",
     speech: ["home", "Engineering", "in geo", "ngl", "india", "in jail", "geology"],
     pronun: "Engineering and Geoscience Building",
+    fullMap: false,
   },
   Shenandoah: {
     latitude: 38.431779,
@@ -52,6 +58,7 @@ module.exports = {
     name: "Shenandoah Hall",
     speech: ["Shenandoah", "Shenandoah Hall", "shindo"],
     pronun: "Shenandoah Hall",
+    fullMap: true,
   },
   EHall: {
     latitude: 38.431662,
@@ -59,6 +66,7 @@ module.exports = {
     name: "E-Hall",
     speech: ["E-Hall", "he hall", "he how", "e hall"],
     pronun: "E-Hall",
+    fullMap: false,
   },
   Chandler: {
     latitude: 38.432486,
@@ -66,6 +74,7 @@ module.exports = {
     name: "Chandler Hall",
     speech: ["Chandler", "gender"],
     pronun: "Chandler Hall",
+    fullMap: true,
   },
   Chesapeake: {
     latitude: 38.432428,
@@ -73,6 +82,7 @@ module.exports = {
     name: "Chesapeake Hall",
     speech: ["Chesapeake", "Chesapeake Hall"],
     pronun: "Chesapeake Hall",
+    fullMap: false,
   },
   Festival: {
     latitude: 38.433091,
@@ -80,6 +90,7 @@ module.exports = {
     name: "Festival",
     speech: ["Festival", "festi"],
     pronun: "Festival",
+    fullMap: false,
   },
   Bioscience: {
     latitude: 38.433203, 
@@ -87,6 +98,7 @@ module.exports = {
     name: "Bio",
     speech: ["bioscience", "bioscience building", "bio"],
     pronun: "Bioscience Building",
+    fullMap: false,
   },
 
 
@@ -98,6 +110,7 @@ module.exports = {
     name: "White Hall",
     speech: ["White", "White Hall", "whitehall"],
     pronun: "White Hall",
+    fullMap: true,
   },
   Huffman: {
     latitude: 38.436351, 
@@ -105,6 +118,7 @@ module.exports = {
     name: "Huffman Hall",
     speech: ["Huffman", "Huffman Hall", "huffman all", "kaufman"],
     pronun: "Huffman Hall",
+    fullMap: true,
   },
   Village: {
     latitude: 38.436549, 
@@ -112,6 +126,7 @@ module.exports = {
     name: "Village",
     speech: ["Village", "Village Area"],
     pronun: "Village",
+    fullMap: true,
   },
   Bookstore: {
     latitude: 38.436594, 
@@ -119,6 +134,7 @@ module.exports = {
     name: "Bookstore",
     speech: ["Bookstore", "bookstores", "books are"],
     pronun: "Bookstore",
+    fullMap: true,
   },
   Showker: {
     latitude: 38.433432, 
@@ -126,6 +142,7 @@ module.exports = {
     name: "Showker Hall",
     speech: ["Showker", "Showker Hall", "shocker hall", "shocker", "shoulder", "sugar", "show care", "show her"],
     pronun: "Showker Hall",
+    fullMap: true,
   },
   Hartman: {
     latitude: 38.433014, 
@@ -133,6 +150,7 @@ module.exports = {
     name: "Hartman Hall",
     speech: ["Hartman", "Hartman Hall", "hartman all", "harman", "harming"],
     pronun: "Hartman Hall",
+    fullMap: true,
   },
   Sonner: {
     latitude: 38.432437, 
@@ -140,6 +158,7 @@ module.exports = {
     name: "Sonner Hall",
     speech: ["Sonner", "Sonner Hall", "sooner", "sooner", "sewn or hall", "solder", "sonic"],
     pronun: "Sonner Hall",
+    fullMap: true,
   },
   XLabs: {
     latitude: 38.431, 
@@ -147,6 +166,7 @@ module.exports = {
     name: "X-Labs",
     speech: ["x labs", "eggs labs", "x laps", "eggs labs"],
     pronun: "X Labs",
+    fullMap: true,
   },
   greek: {
     latitude: 38.434912,
@@ -154,6 +174,7 @@ module.exports = {
     name: "Greek Row",
     speech: ["Greek Row", "greek"],
     pronun: "Greek Row",
+    fullMap: true,
   },
   
 
@@ -164,6 +185,7 @@ module.exports = {
     name: "Alumnae Hall",
     speech: ["alumnae", "alumnae hall", "alumni", "alumni hall", "president"],
     pronun: "Alumnae Hall",
+    fullMap: true,
   },
   Taylor: {
     latitude: 38.438047, 
@@ -171,6 +193,7 @@ module.exports = {
     name: "Taylor Hall",
     speech: ["Taylor", "Taylor Hall", "Taylor Down", "Taylor Down Under", 'taylor\'s'],
     pronun: "Taylor Hall",
+    fullMap: true,
   },
   Hillside: {
     latitude: 38.438268, 
@@ -178,6 +201,7 @@ module.exports = {
     name: "Hillside Hall",
     speech: ["Hillside", "Hillside Hall"],
     pronun: "Hillside Hall",
+    fullMap: true,
   },
   Bell: {
     latitude: 38.438438, 
@@ -185,6 +209,7 @@ module.exports = {
     name: "Bell Hall",
     speech: ["Bell", "Bell Hall", "bellhop", "belt all"],
     pronun: "Bell Hall",
+    fullMap: true,
   },
   Union: {
     latitude: 38.437395, 
@@ -192,6 +217,7 @@ module.exports = {
     name: "Madison Union",
     speech: ["Union", "Madison Union", "mass and union"],
     pronun: "Madison Union",
+    fullMap: true,
   },
   DHall: {
     latitude: 38.437997, 
@@ -199,6 +225,7 @@ module.exports = {
     name: "D-Hall",
     speech: ["D hall", "deal", "dining hall", "dee hall"],
     pronun: "D Hall",
+    fullMap: true,
   },
   Dukes: {
     latitude: 38.438775, 
@@ -206,6 +233,7 @@ module.exports = {
     name: "Dukes Dining",
     speech: ["Duke", "Duke Dining", "Dukes", "Dukes Dining"],
     pronun: "Dukes Dining",
+    fullMap: true,
   },
   Carrier: {
     latitude: 38.439192, 
@@ -213,6 +241,7 @@ module.exports = {
     name: "Carrier Library",
     speech: ["Carrier", "Carrier Library"],
     pronun: "Carrier Library",
+    fullMap: true,
   },
   Wilson: {
     latitude: 38.438445,
@@ -220,6 +249,7 @@ module.exports = {
     name: "Wilson Hall",
     speech: ["Wilson", "Wilson Hall", "wilson all"],
     pronun: "Wilson Hall",
+    fullMap: true,
   },
   Quad: {
     latitude: 38.43981, 
@@ -227,6 +257,7 @@ module.exports = {
     name: "The Quad",
     speech: ["Quad", "The Quad", "quiet"],
     pronun: "the Quad",
+    fullMap: true,
   },
   Harrison: {
     latitude: 38.438734, 
@@ -234,6 +265,7 @@ module.exports = {
     name: "Harrison Hall",
     speech: ["Harrison", "Harrison Hall", "harrison all"],
     pronun: "Harrison Hall",
+    fullMap: true,
   },
   hillcrest: {
     latitude: 38.438439, 
@@ -241,6 +273,7 @@ module.exports = {
     name: "Hillcrest House",
     speech: ["hillcrest house", "hillcrest", "honors", "honors college"],
     pronun: "Hillcrest House",
+    fullMap: true,
   },
   Health: {
     latitude: 38.439817, 
@@ -248,6 +281,7 @@ module.exports = {
     name: "Health & Behavioral Science",
     speech: ["Health", "Health and Behavioral", "montiplier"],
     pronun: "Health and Behavioral Science",
+    fullMap: true,
   },
   Wampler: {
     latitude: 38.439423, 
@@ -255,6 +289,7 @@ module.exports = {
     name: "Wampler Hall",
     speech: ["Wampler", "wham puller", "rambler", "wham polar"],
     pronun: "Wampler Hall",
+    fullMap: true,
   },
   Roop: {
     latitude: 38.437697, 
@@ -262,6 +297,7 @@ module.exports = {
     name: "Roop Hall",
     speech: ["Roop", "Roop Hall"],
     pronun: "Roop Hall",
+    fullMap: true,
   },
   Service: {
     latitude: 38.438634, 
@@ -269,6 +305,7 @@ module.exports = {
     name: "Service",
     speech: ["Service"],
     pronun: "Service",
+    fullMap: true,
   },
   
 /*
@@ -279,6 +316,7 @@ module.exports = {
     name: "Home",
     speech: ["Home"],
     pronun: "home",
+    fullMap: false,
   },
   */
   cafe: {
@@ -287,6 +325,7 @@ module.exports = {
     name: "Cafe",
     speech: ["Cafe"],
     pronun: "cafe",
+    fullMap: false,
   },
   // clinic: {
   //   latitude: 38.433125,
@@ -294,6 +333,7 @@ module.exports = {
   //   name: "Clinic",
   //   speech: ["Clinic"],
   //   pronun: "clinic",
+    // fullMap: false,
   // },
   mall: {
     latitude: 38.432923,
@@ -301,6 +341,7 @@ module.exports = {
     name: "Mall",
     speech: ["Mall"],
     pronun: "mall",
+    fullMap: false,
   },
   movie: {
     latitude: 38.432637,
@@ -308,6 +349,7 @@ module.exports = {
     name: "Movie",
     speech: ["Movie"],
     pronun: "movie",
+    fullMap: false,
   },
 /*
   diner: {
@@ -316,6 +358,7 @@ module.exports = {
     name: "Diner",
     speech: [""],
     pronun: "diner",
+    fullMap: false,
   },
   festival: {
     latitude: 38.433019,
@@ -323,6 +366,7 @@ module.exports = {
     name: "Festival",
     speech: ["festival", "festi"],
     pronun: "festival",
+    fullMap: false,
   },
 */
   rest: {
@@ -331,6 +375,7 @@ module.exports = {
     name: "Rest Stop",
     speech: ["rest stop", "rest"],
     pronun: "Rest Stop",
+    fullMap: false,
   },
 /*
   chesapeake: {
@@ -339,6 +384,7 @@ module.exports = {
     name: "Chesapeake",
     speech: ["chesapeake"],
     pronun: "chesapeake",
+    fullMap: false,
   }
 */
 }
