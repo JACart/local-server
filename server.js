@@ -20,7 +20,7 @@ global.eventManager = new events()
     const args = process.argv.slice(2)
     console.log(args)
     cartState.init(args.includes('online'), args.includes('pose'))
-    handleUI(io)
+    handleUI(io, args.includes('fullmap'))  // pass 'fullmap' on start to load full map. no args runs small map.
     handleSpeech(io)
     // handleZig(io)
     
@@ -33,10 +33,6 @@ global.eventManager = new events()
       require('./handleROSLib')()
     } else {
       console.log("\n\n\nROS DISABLED\n\n\n")
-    }
-    if (args.includes('fullmap')) {
-      eventManager.emit('fullMap', true)
-      console.log("\nFULL MAP\n")
     }
 
     handleROS(io) // socket io
