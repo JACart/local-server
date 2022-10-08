@@ -20,7 +20,7 @@ global.eventManager = new events()
     const args = process.argv.slice(2)
     console.log(args)
     cartState.init(args.includes('online'), args.includes('pose'))
-    handleUI(io, args.includes('fullmap'))  // pass 'fullmap' on start to load full map. no args runs small map.
+    handleUI(io, args.includes('fullmap'), args.includes('research'))  // pass 'fullmap' on start to load full map. no args runs small map.
     handleSpeech(io)
     // handleZig(io)
     
@@ -32,7 +32,14 @@ global.eventManager = new events()
     if (!args.includes('rosoff')) {
       require('./handleROSLib')()
     } else {
-      console.log("\n\n\nROS DISABLED\n\n\n")
+      console.log('\33[31m' + "\nROS DISABLED\n" + '\33[37m')
+    }
+
+    if (args.includes('fullmap')) {
+      console.log('\033[93m' + "FullMap launched" + '\33[37m')
+    }
+    if (args.includes('research')) {
+      console.log('\033[93m' + "Operating in Research Mode" + '\33[37m')
     }
 
     handleROS(io) // socket io
