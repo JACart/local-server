@@ -36,6 +36,7 @@ module.exports = {
     'change-pullover',
     'mph',
     'fullMap',
+    'research',
   ],
   uiIncomingEvents: [
     'change-destination',

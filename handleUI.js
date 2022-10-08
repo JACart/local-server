@@ -4,7 +4,7 @@ const destinations = require('./destinations')
 let timeoutGPS
 var position = [38.433859, -78.862175]
 
-module.exports = (io, fullMap) => {
+module.exports = (io, fullMap, research) => {
   uiOutgoingEvents.map((x) => {
     eventManager.on(x, (data) => {
       io.of('/ui').emit(x, data)
@@ -15,6 +15,7 @@ module.exports = (io, fullMap) => {
     socket.emit('ui-init', CARTSTATE())
     socket.emit('get-destinations', destinations)
     socket.emit('fullMap', fullMap)
+    socket.emit('research', research)
     uiSocket = socket
     socket.on('pullover', (x) => console.log('pullover: ' + x))
     socket.on('speed', (x) => console.log("Speed: " + x))
