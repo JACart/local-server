@@ -82,7 +82,7 @@ module.exports = {
     name: "Chesapeake Hall",
     speech: ["Chesapeake", "Chesapeake Hall"],
     pronun: "Chesapeake Hall",
-    fullMap: false,
+    fullMap: true,
   },
   Festival: {
     latitude: 38.433091,
