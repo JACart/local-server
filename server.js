@@ -20,15 +20,18 @@ global.eventManager = new events()
     const args = process.argv.slice(2)
     console.log(args)
     cartState.init(args.includes('online'), args.includes('pose'))
-    handleUI(io, args.includes('fullmap'), args.includes('research'))  // pass 'fullmap' on start to load full map. no args runs small map.
+
+    // pass 'fullmap' on start to load full map. no args runs small map.
+    handleUI(io, args.includes('fullmap'), args.includes('research'))  
     handleSpeech(io)
     // handleZig(io)
     
+    // pass 'online' on start to run in onlinemode. no args runs offline
     if (args.includes('online')) {
       handleOnline(io)
     }
     
-    //pass 'rosoff' on start to turn off ROS. no args runs ROS
+    // pass 'rosoff' on start to turn off ROS. no args runs ROS. Used for testing locally without need for cart connection.
     if (!args.includes('rosoff')) {
       require('./handleROSLib')()
     } else {

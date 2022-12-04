@@ -1,3 +1,12 @@
+/**
+ * Connections are unique strings which identify socket names. This is used by the handle classes
+ * which iterate through each element appropriately and connect a socket to each string.
+ * 
+ * Elements are to be read as if in the eyes of the Local Server. speechOutGoingEvents are socket events
+ * going out to the Speech system. speechIncomingEvents are socket events coming from the speech system.
+ * Each event is represented by a string in each element.
+ */
+
 module.exports = {
   // mongo: 'mongodb://localhost/jmu-local',
   cartId: 'jakart',

@@ -1,17 +1,42 @@
-module.exports = {
+/**
+ * Each destination contains the information needed to be displayed on the UI as well as for ROS to know the location selected.
+ * The ID is used as a unique identifier for each location. This must be simplistic (no spaces, special characters, etc)
+ * 
+ * Latitude/Longitude is gathered using GPS coords (best way to grab is using google maps). Be sure to use the mathmatical coordinates
+ * (ie 38.777, -75.333) rather than the user friendly coordinates (ie 48'200 N, 78'300 W).
+ * 
+ * Name is what is displayed on the UI. This can be a custom string different from the ID.
+ * 
+ * Speech is used for the Speech-To-Text system (User to cart) to recognize different variations of pronouncing the destinations. It is
+ * suggested to place different pronunciations of the name (ie convo, combo, compo), as well as different variations (ie King Hall, King, i sat).
+ * You may want to run the STT system individually and run tests on how the system picks up what the user is saying.
+ * 
+ * Pronun is used for the Text-To-Speech system (cart to user) for how the location should be said. This is to go have a custom string other than
+ * the ID for a more user friendly speech system.
+ * 
+ * fullMap is a boolean used for current version of our map system (Fal 2022). With different maps (small map/full map) some destinations may not
+ * need to appear (or shouldn't appear due to no routes available) on the small map. If true, the destination will not appear when small map is running
+ * but will appear when fullMap is ran on startup.
+ * 
+ * Use the template below to add more destinations. Replace anything with {} with the datatype within it. Try to place new destinations within their
+ * appropriate category by area on campus.
+ */
 //Template
 /*
   {ID}: {
-    latitude: {lat},
-    longitude: {long},
-    name: {name},       //String being displayed on UI
-    speech: {[x,y,z]},   //Different names for speech system to recognize
-    pronun: {string},   //Pronunciation for Text-To-Speech
-    fullMap: {boolean}, //If destination requires full map data point cloud
+    latitude: {float},
+    longitude: {float},
+    name: {String},       //String being displayed on UI
+    speech: {[String]},   //Different names for speech system to recognize
+    pronun: {String},   //Pronunciation for Text-To-Speech
+    fullMap: {Boolean}, //If destination requires full map data point cloud
   },
-*/
+ */
 
-  //East Campus
+module.exports = {
+  //  **********************
+  //  East Campus
+  //  **********************
   King: {
     latitude: 38.434373, 
     longitude: -78.864079,
@@ -103,7 +128,11 @@ module.exports = {
 
 
 
-  //Central Campus (Anything between highway and train track (ie village))
+
+  //  **********************
+  //  Central Campus 
+  //  (Anything between highway and train track (ie village))
+  //  **********************
   White: {
     latitude: 38.435754, 
     longitude: -78.866869,
@@ -178,7 +207,9 @@ module.exports = {
   },
   
 
-  //Main Campus
+  //  **********************
+  //  Main Campus 
+  //  **********************
   Alumnae: {
     latitude: 38.438880, 
     longitude: -78.87337,
@@ -308,17 +339,11 @@ module.exports = {
     fullMap: true,
   },
   
-/*
-  //Original Testing
-  home: {
-    latitude: 38.433859,
-    longitude: -78.862175,
-    name: "Home",
-    speech: ["Home"],
-    pronun: "home",
-    fullMap: false,
-  },
-  */
+
+  
+  //  **********************
+  //  Original Testing
+  //  **********************
   cafe: {
     latitude: 38.433406,
     longitude: -78.86157,
@@ -327,14 +352,6 @@ module.exports = {
     pronun: "cafe",
     fullMap: false,
   },
-  // clinic: {
-  //   latitude: 38.433125,
-  //   longitude: -78.860713,
-  //   name: "Clinic",
-  //   speech: ["Clinic"],
-  //   pronun: "clinic",
-    // fullMap: false,
-  // },
   mall: {
     latitude: 38.432923,
     longitude: -78.860962,
@@ -351,24 +368,6 @@ module.exports = {
     pronun: "movie",
     fullMap: false,
   },
-/*
-  diner: {
-    latitude: 38.431662,
-    longitude: -78.860880,
-    name: "Diner",
-    speech: [""],
-    pronun: "diner",
-    fullMap: false,
-  },
-  festival: {
-    latitude: 38.433019,
-    longitude: -78.859893,
-    name: "Festival",
-    speech: ["festival", "festi"],
-    pronun: "festival",
-    fullMap: false,
-  },
-*/
   rest: {
     latitude: 38.43352,
     longitude: -78.86257,
@@ -377,14 +376,4 @@ module.exports = {
     pronun: "Rest Stop",
     fullMap: false,
   },
-/*
-  chesapeake: {
-    latitude: 38.43299,
-    longitude: -78.86240,
-    name: "Chesapeake",
-    speech: ["chesapeake"],
-    pronun: "chesapeake",
-    fullMap: false,
-  }
-*/
 }

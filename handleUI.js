@@ -13,9 +13,14 @@ module.exports = (io, fullMap, research) => {
 
   io.of('/ui').on('connection', (socket) => {
     socket.emit('ui-init', CARTSTATE())
+
+    // Emit all destinations located within destinations.js
     socket.emit('get-destinations', destinations)
+
+    // Emit which mode is activated. This is determined by arguments passed into npm start {args}
     socket.emit('fullMap', fullMap)
     socket.emit('research', research)
+
     uiSocket = socket
     socket.on('pullover', (x) => console.log('pullover: ' + x))
     socket.on('speed', (x) => console.log("Speed: " + x))
