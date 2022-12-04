@@ -1,3 +1,4 @@
+const io = require('socket.io-client')
 /**
  * Change the const socket below to test between local and cloud. localhost will connect
  * socket to a local instance of cloud (you must run cloud locally). cart.av will connect
@@ -6,7 +7,7 @@
 // const socket = io('http://localhost:10000/cart')
 const socket = io('https://cart.av.cise.jmu.edu/cart')
 
-const io = require('socket.io-client')
+
 const cartState = require('./cartState')
 const destinations = require('./destinations')
 const { onlineIncomingEvents, onlineOutgoingEvents } = require('./connections.js')
