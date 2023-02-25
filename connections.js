@@ -46,6 +46,7 @@ module.exports = {
     'mph',
     'fullMap',
     'research',
+    'pose-oob',
   ],
   uiIncomingEvents: [
     'change-destination',
@@ -65,6 +66,7 @@ module.exports = {
     'passenger-video',
     'cart-video',
     // 'passenger-exit',
+    'pose-oob',
   ],
   rosOutgoingEvents: [
     // 'transit-await',

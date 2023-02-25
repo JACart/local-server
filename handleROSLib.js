@@ -173,6 +173,14 @@ function subscribeToTopics() {
   }).subscribe((x) => {
     eventManager.emit('eta', x.data)
   })
+
+  new ROSLIB.Topic({
+    ros: ros,
+    name: '/passenger/out_of_bounds',
+    messageType: 'std_msgs/Bool',
+  }).subscribe((x) => {
+    eventManager.emit('pose-oob', x.data)
+  })
 }
 
 function tts(str) {
