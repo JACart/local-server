@@ -181,6 +181,14 @@ function subscribeToTopics() {
   }).subscribe((x) => {
     eventManager.emit('pose-oob', x.data)
   })
+
+  new ROSLIB.Topic({
+    ros: ros,
+    name: '/passenger/occupants',
+    messageType: 'std_msgs/Int8',
+  }).subscribe((x) => {
+    eventManager.emit('occupants', x.data)
+  })
 }
 
 function tts(str) {

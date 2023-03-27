@@ -47,6 +47,7 @@ module.exports = {
     'fullMap',
     'research',
     'pose-oob',
+    'occupants',
   ],
   uiIncomingEvents: [
     'change-destination',
@@ -67,6 +68,7 @@ module.exports = {
     'cart-video',
     // 'passenger-exit',
     'pose-oob',
+    'occupants',
   ],
   rosOutgoingEvents: [
     // 'transit-await',
