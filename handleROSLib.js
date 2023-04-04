@@ -184,6 +184,14 @@ function subscribeToTopics() {
 
   new ROSLIB.Topic({
     ros: ros,
+    name: '/passenger/emergency_stop',
+    messageType: 'std_msgs/Bool',
+  }).subscribe((x) => {
+    eventManager.emit('passenger-emergency-stop', x.data)
+  })
+
+  new ROSLIB.Topic({
+    ros: ros,
     name: '/passenger/occupants',
     messageType: 'std_msgs/Int8',
   }).subscribe((x) => {

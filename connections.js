@@ -48,6 +48,7 @@ module.exports = {
     'research',
     'pose-oob',
     'occupants',
+    'passenger-emergency-stop',
   ],
   uiIncomingEvents: [
     'change-destination',
@@ -69,6 +70,7 @@ module.exports = {
     // 'passenger-exit',
     'pose-oob',
     'occupants',
+    'passenger-emergency-stop',
   ],
   rosOutgoingEvents: [
     // 'transit-await',
