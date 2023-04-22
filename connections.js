@@ -27,8 +27,8 @@ module.exports = {
   uiOutgoingEvents: [
     'ui-init',
     'summon',
-    'pose',
-    'passenger-unsafe',
+    //'pose',
+    //'passenger-unsafe',
     'summon-cancel',
     'summon-finish',
     'path',
@@ -36,7 +36,7 @@ module.exports = {
     // 'transit-start', // change
     // 'transit-end',
     'audio',
-    'reset-client', //change
+    //'reset-client', //change
     'passenger-exit',
     'speech',
     'listening',
@@ -46,7 +46,7 @@ module.exports = {
     'mph',
     'fullMap',
     'research',
-    'pose-oob',
+    'unsafe-pose',
     'occupants',
     'passenger-emergency-stop',
   ],
@@ -68,7 +68,7 @@ module.exports = {
     'passenger-video',
     'cart-video',
     // 'passenger-exit',
-    'pose-oob',
+    'unsafe-pose',
     'occupants',
     'passenger-emergency-stop',
   ],

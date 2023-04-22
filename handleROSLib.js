@@ -22,32 +22,6 @@ eventManager.on('change-destination', () => {
   pulloverHelper(false)
 })
 
-eventManager.on('pose', (x) => {
-  if (CARTSTATE().state === 'idle' && x.passenger && x.safe) {
-    CARTSTATE().state = 'summon-finish'
-    console.log('PASSENGER ARRIVING')
-    eventManager.emit('ui-init', CARTSTATE())
-  }
-
-  if (
-    CARTSTATE().state === 'transit-start' &&
-    (!x.passenger || !x.safe) &&
-    !isPulledOver
-  ) {
-    // DISBALED PULL OVER MESSAGE
-    //  pulloverHelper(true)
-  }
-
-  if (
-    CARTSTATE().state === 'transit-start' &&
-    x.passenger &&
-    x.safe &&
-    isPulledOver
-  ) {
-    pulloverHelper(false)
-  }
-})
-
 eventManager.on('pullover', (status) => {
   console.log("I got pullover")
   pulloverHelper(status)
@@ -103,14 +77,6 @@ function subscribeToTopics() {
     messageType: 'std_msgs/String',
   }).subscribe((x) => {
     eventManager.emit('arrived')
-  })
-
-  new ROSLIB.Topic({
-    ros: ros,
-    name: '/cart_empty_safe',
-    messageType: 'std_msgs/String',
-  }).subscribe((x) => {
-    if (POSE) eventManager.emit('pose', JSON.parse(x.data))
   })
 
   new ROSLIB.Topic({
@@ -176,16 +142,16 @@ function subscribeToTopics() {
 
   new ROSLIB.Topic({
     ros: ros,
-    name: '/passenger/out_of_bounds',
+    name: '/passenger/unsafe_pose',
     messageType: 'std_msgs/Bool',
   }).subscribe((x) => {
-    eventManager.emit('pose-oob', x.data)
+    eventManager.emit('unsafe-pose', x.data)
   })
 
   new ROSLIB.Topic({
     ros: ros,
     name: '/passenger/emergency_stop',
-    messageType: 'std_msgs/Bool',
+    messageType: 'std_msgs/String',
   }).subscribe((x) => {
     eventManager.emit('passenger-emergency-stop', x.data)
   })
