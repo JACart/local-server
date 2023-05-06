@@ -4,6 +4,8 @@ const distance = require('gps-distance')
 
 const lastGPS = { latitude: 0, longitude: 0 }
 
+let isPulledOver = false
+
 let ros = new ROSLIB.Ros({
   url: 'ws://127.0.0.1:9090',
 })
@@ -11,10 +13,28 @@ let ros = new ROSLIB.Ros({
 module.exports = () => {
   eventManager.on('drive-to', (data) => {
     console.log(`Latitude: ${data.latitude} | Longitude: ${data.longitude}`)
-
+    pulloverHelper(false)
     SendDriveRequest(data.latitude, data.longitude)
   })
 }
+
+eventManager.on('change-destination', () => {
+  pulloverHelper(false)
+})
+
+eventManager.on('pullover', (status) => {
+  console.log("I got pullover")
+  pulloverHelper(status)
+})
+
+eventManager.on('tts', (speech) => {
+  tts(speech)
+})
+
+eventManager.on('speed', (data) => {
+  console.log('Speed: ' + data)
+  changeSpeed(data)
+})
 
 ros.on('connection', function () {
   console.log('Connected to websocket server.')
@@ -34,6 +54,22 @@ ros.on('close', function () {
   cartState.rosDisconnect()
 })
 
+function pulloverHelper(status) {
+  const topic = new ROSLIB.Topic({
+    ros: ros,
+    name: '/stop',
+    messageType: 'navigation_msgs/Stop',
+  })
+  const msg = new ROSLIB.Message({
+    sender_id: { data: 'server' },
+    distance: -1,
+    stop: status,
+  })
+  console.log(msg)
+  isPulledOver = status
+  topic.publish(msg)
+}
+
 function subscribeToTopics() {
   new ROSLIB.Topic({
     ros: ros,
@@ -41,6 +77,24 @@ function subscribeToTopics() {
     messageType: 'std_msgs/String',
   }).subscribe((x) => {
     eventManager.emit('arrived')
+  })
+
+  new ROSLIB.Topic({
+    ros: ros,
+    name: '/estimated_vel_kmph',
+    messageType: 'std_msgs/Float32',
+  }).subscribe((x) => {
+    // console.log("ROS speed: " + Math.round(x.data * 0.621371))
+    eventManager.emit('mph', Math.round(x.data * 0.621371))
+  })
+ 
+  new ROSLIB.Topic({
+    ros: ros,
+    name: '/speech_text',
+    messageType: 'std_msgs/String',
+  }).subscribe((x) => {
+    console.log(x.data)
+    eventManager.emit('tts', x.data)
   })
 
   new ROSLIB.Topic({
@@ -56,7 +110,7 @@ function subscribeToTopics() {
         x.latitude,
         x.longitude
       )
-      if (result < 0.008) {
+      if (result < 0.001) {
         eventManager.emit('gps', data)
         lastGPS = data
       } else {
@@ -85,6 +139,58 @@ function subscribeToTopics() {
   }).subscribe((x) => {
     eventManager.emit('eta', x.data)
   })
+
+  new ROSLIB.Topic({
+    ros: ros,
+    name: '/passenger/unsafe_pose',
+    messageType: 'std_msgs/Bool',
+  }).subscribe((x) => {
+    eventManager.emit('unsafe-pose', x.data)
+  })
+
+  new ROSLIB.Topic({
+    ros: ros,
+    name: '/passenger/emergency_stop',
+    messageType: 'std_msgs/String',
+  }).subscribe((x) => {
+    eventManager.emit('passenger-emergency-stop', x.data)
+  })
+
+  new ROSLIB.Topic({
+    ros: ros,
+    name: '/passenger/occupants',
+    messageType: 'std_msgs/Int8',
+  }).subscribe((x) => {
+    eventManager.emit('occupants', x.data)
+  })
+}
+
+function tts(str) {
+  const topic = new ROSLIB.Topic({
+    ros: ros,
+    name: '/text_speech',
+    messageType: 'std_msgs/String',
+  })
+  const msg = new ROSLIB.Message({
+    data: str,
+  })
+
+  console.log('Publishing  TTS request')
+  topic.publish(msg)
+}
+
+function changeSpeed(speed) {
+  const topic = new ROSLIB.Topic({
+    ros: ros,
+    name: '/speed_setting',
+    messageType: 'std_msgs/Float32',
+  })
+  const msg = new ROSLIB.Message({
+    data: speed,
+  })
+
+  console.log('Publishing speed change: ' + speed)
+  topic.publish(msg)
 }
 
 function SendDriveRequest(latitude, longitude) {
